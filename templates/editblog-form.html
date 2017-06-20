@@ -1,0 +1,28 @@
+{% extends "base-form.html" %}
+{% block content %}
+
+<section class="row">
+  <section class="col-md-12">
+    <form method="post">
+      <h2>Edit Blog</h2>
+
+      <!-- Displays input form for user to make changes to blog -->
+      <div class="form-group">
+        <label class="newblog-title-label">Title</label>
+        <input class="form-control form-control-blog" name="title" placeholder="Add title" type="text" value="{{blog.title}}">
+      </div>
+
+      <div class="form-group">
+        <label class="newblog-content-label">Content</label>
+        <textarea class="form-control form-control-blog" name="contents" rows="6">{{blog.contents}}</textarea>
+      </div>
+      <span class="error">{{error}}</span>
+
+      <!-- Buttons to post changes to blog or cancel to return to view all blogs -->
+      <button class="btn btn-primary pull-right" type="submit">Post</button>
+      <a class="btn btn-primary pull-right" href="/blog/allblogs" role="button">Cancel</a>
+    </form>
+  </section>
+</section>
+
+{% endblock %}

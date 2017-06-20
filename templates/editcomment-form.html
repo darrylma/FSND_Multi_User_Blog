@@ -1,0 +1,25 @@
+{% extends "base-form.html" %}
+{% block content %}
+
+<h2>Edit Comment</h2>
+
+<section class="comment-form">
+  <section class="row">
+    <section class="col-md-12 blog-comment-form">
+
+      <!-- Displays input form for user to make changes to comment -->
+      <form method="post" role="form">
+        <section class="form-group">
+          <textarea class="form-control-comment" name="comment" placeholder="Edit comment..." rows="5">{{comment.comment}}</textarea>
+        </section>
+        <span class="error">{{error}}</span>
+
+        <!-- Buttons to post comment or cancel to return back to blog page -->
+        <button class="btn btn-primary pull-right" type="submit">Post Comment</button>
+        <a class="btn btn-primary pull-right" href="/blog/{{post_id}}" role="button">Cancel</a>
+      </form>
+    </section>
+  </section>
+</section>
+
+{% endblock %}

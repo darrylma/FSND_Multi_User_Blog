@@ -1,0 +1,60 @@
+{% extends "base-form.html" %}
+{% block content %}
+
+<h2>All Blogs</h2>
+<h6>Notice: You can only like blogs that were written by someone else</h6>
+<h6>Click a blog's title/contents to leave a comment</h6>
+
+{% for blog in blogs %}
+<section class="blog-outline">
+  <section class="row">
+    <section class="col-md-8 col-xs-8">
+      Created By: {{blog.created_by}}
+    </section>
+
+
+    <section class="col-md-4 col-xs-4 text-right">
+      {{blog.created.strftime("%b %d, %Y")}}
+    </section>
+  </section>
+
+  <!-- Allows user to navigate to single blog view by clicking on blog title/content -->
+  <a href="/blog/{{blog.key().id()}}">
+    <section class="row">
+      <section class="col-md-12 allblog-blog-title">
+        Title: {{blog.title}}
+      </section>
+    </section>
+
+
+    <section class="row">
+      <section class="col-md-12 allblog-blog-content">
+        {{blog.contents.replace('\n','<br>')|truncate(300)|safe}}
+      </section>
+    </section>
+  </a>
+
+  <!-- Allows user to like blog only if user did not create blog -->
+  <section class="row">
+    <section class="col-md-6 col-xs-6">
+      {% if blog.created_by != user.name %}
+        <a class="blog-like" href="/blog/like/{{blog.key().id()}}">
+          <i aria-hidden="true" class="fa fa-thumbs-o-up like-icon"></i>
+        </a>
+      {% else %}
+        <i aria-hidden="true" class="fa fa-thumbs-o-up like-icon"></i>
+      {% endif %}
+      <span class="blog-like-number">{{blog.likes|length}}</span>
+    </section>
+
+    <!-- Allows user to edit or delete  blog if user created blog -->
+    {% if blog.created_by == user.name %}
+      <section class="col-md-6 col-xs-6 btn-edit-delete">
+        <a href="/blog/editblog/{{blog.key().id()}}">Edit</a> | <a href="/blog/deleteblog/{{blog.key().id()}}">Delete</a>
+      </section>
+    {% endif %}
+  </section>
+</section>
+{% endfor %}
+
+{% endblock %}

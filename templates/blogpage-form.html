@@ -1,0 +1,86 @@
+{% extends "base-form.html" %}
+{% block content %}
+
+<h2>Single Blog</h2>
+
+  <!-- Creates box outline around blog information and comment input box -->
+	<section class="blog-outline">
+		<section class="row">
+			<section class="col-md-8 col-xs-8">
+				Created By: {{blog.created_by}}
+			</section>
+
+			<section class="col-md-4 col-xs-4 text-right">
+				{{blog.created.strftime("%b %d, %Y")}}
+			</section>
+		</section>
+
+		<section class="row">
+			<section class="col-md-12 blogpage-blog-title">
+				Title: {{blog.title}}
+			</section>
+		</section>
+
+		<section class="row">
+			<section class="col-md-12 blogpage-blog-content">
+				{{blog.contents.replace('\n','<br>')|safe}}
+			</section>
+		</section>
+
+    <!-- Allows user to like blog only if user did not create blog -->
+		<section class="row">
+			<section class="col-md-6 col-xs-6">
+				{% if blog.created_by != user.name %}
+          <a class="blog-like" href="/blog/like/{{blog.key().id()}}">
+            <i aria-hidden="true" class="fa fa-thumbs-o-up blogpage-like-icon"></i>
+          </a>
+        {% else %}
+          <i aria-hidden="true" class="fa fa-thumbs-o-up blogpage-like-icon"></i>
+        {% endif %}
+        <span class="blogpage-like-number">{{blog.likes|length}}</span>
+			</section>
+			<span class="col-md-6 col-xs-6 blogpage-comment-number">{{comments_num}} comment(s)</span>
+		</section>
+		<br>
+
+    <!-- Comment input form to leave a comment for blog -->
+		<section class="row">
+			<form method="post" role="form">
+				<section class="form-group">
+					<textarea class="form-control form-control-blog" name="comment" placeholder="Add a comment..." rows="3"></textarea>
+				</section>
+				<span class="error">{{error}}</span>
+				  <!-- Button to post a comment -->
+        <button class="btn btn-primary btn-post-comment" type="submit">Post Comment</button>
+			</form>
+		</section>
+	</section>
+
+	<h4>Comments</h4>
+
+  <!-- Creates box outline around all comments associated to blog -->
+	<section class="blog-outline">
+		{% for comment in comments %}
+
+		<section class="row">
+			<section class="col-md-12 blogpage-comments">
+				{{comment.comment.replace('\n', '<br>') | truncate(300)|safe}}
+
+				<section class="row">
+					<section class="col-md-8 col-xs-8 comment-info">
+						Created by {{comment.created_by}} on {{comment.created.strftime("%b %d, %Y")}}
+					</section>
+
+          <!-- Allows user to edit/delete comment only if he/she created the comment -->
+					{% if comment.created_by == user.name %}
+  					<section class="col-md-4 col-xs-4 text-right">
+  						<a href="/blog/editcomment/{{blog.key().id()}}/{{comment.key().id()}}">Edit</a> | <a href="/blog/deletecomment/{{blog.key().id()}}/{{comment.key().id()}}">Delete</a>
+  					</section>
+					{% endif %}
+				</section>
+			</section>
+		</section>
+		{% endfor %}
+	</section>
+
+{% endblock %}

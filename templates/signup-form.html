@@ -1,0 +1,41 @@
+{% extends "pre-login-base-form.html" %}
+{% block content %}
+
+<section class="row">
+  <section class="col-md-6 col-md-offset-3">
+    <form method="post">
+      <h3>Register New User</h3>
+
+      <!-- Allows user to input information required to register user -->
+      <section class="form-group">
+        <label class="labels registration-label">Username</label>
+        <input class="form-control" name="username" placeholder="Username" type="text" value="{{username}}">
+        <span class="error">{{error_username}}</span>
+      </section>
+
+      <section class="form-group">
+        <label class="labels registration-label">Password</label>
+        <input class="form-control" name="password" placeholder="Password" type="password" value="">
+        <span class="error">{{error_password}}</span>
+      </section>
+
+      <section class="form-group">
+        <label class="labels verify-email-label">Verify Password</label>
+        <input class="form-control" name="verify" placeholder="Verify Password" type="password" value="">
+        <span class="error">{{error_verify}}</span>
+      </section>
+
+      <section class="form-group">
+        <label class="labels verify-email-label">Email (Optional)</label>
+        <input class="form-control" name="email" placeholder="Email" type="text" value="{{email}}">
+        <span class="error">{{error_email}}</span>
+      </section>
+      <br>
+
+      <!-- Button to submit user details to complete registration process -->
+      <button class="btn btn-primary btn-block" type="submit">Register</button>
+    </form>
+  </section>
+</section>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link type="text/css" rel="stylesheet" href="/static/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+  <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+  <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
+  <title>Multi-User Blog</title>
+</head>
+
+<body>
+  <section class="container">
+		<header class="blog-header">
+
+      <!-- Allows user to navigate to welcome page by clicking on header title -->
+			<a class="blog-title" href="/blog/welcome">Multi-User Blog</a>
+
+			<section class="blog-navigation">
+				<section class="row">
+					<section class="col-md-12 col-xs-12 welcome-logout">
+            <!-- Displays different options based on whether user is logged in or not -->
+            <!-- Allows user to log out -->
+						{% if user %}
+              <a href="#">Welcome! {{user.name}}</a> | <a href="/blog/logout">Logout</a>
+            {% endif %}
+
+            <!-- Allows user to navigate to login or registration page -->
+						{% if not user %}
+              <a href="/blog/login">Login</a> | <a href="/blog/registration">Register</a>
+            {% endif %}
+            <section class="row">
+							<span class="error-header">{{error_header}}</span>
+						</section>
+					</section>
+				</section>
+			</section>
+			<hr>
+
+      <!-- Buttons for user to navigate between creating new blog and viewing all blogs -->
+			<section class="row">
+				<section class="col-md-12 col-xs-12">
+					<a class="btn btn-default" href="/blog/newblog" type="button">Create New Blog</a>
+          <a class="btn btn-default" href="/blog/allblogs" type="button">View All Blogs</a>
+				</section>
+			</section>
+		</header>
+
+    <!-- Section for body of page -->
+		<section class="main">
+			{% block content %}
+      {% endblock %}
+		</section>
+		<br>
+		<br>
+
+    <!-- Footer at bottom of page -->
+		<footer>
+			<hr>
+
+			<section class="row">
+				<section class="col-md-6 col-xs-6">
+					<img alt="Blog icon" class="footer-icon" src="/images/blogicon.jpg">
+				</section>
+
+				<section class="col-md-6 col-xs-6 footer-text">
+					Created by Darryl Ma
+				</section>
+			</section>
+		</footer>
+	</section>
+</body>
+
+<script src="/static/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="/static/bootstrap.min.js" type="text/javascript"></script>
+</html>

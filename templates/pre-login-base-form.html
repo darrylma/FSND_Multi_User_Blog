@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<link href="/static/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="/static/main.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+	<title>Multi-User Blog</title>
+</head>
+
+<body>
+	<section class="container">
+		<header class="blog-header">
+
+      <!-- Allows user to navigate to login page by clicking on header title -->
+			<a class="blog-title" href="/blog/login">Multi-User Blog</a>
+
+			<section class="blog-navigation">
+				<section class="row">
+
+          <!-- Allows user to navigate to login or registration page -->
+					<section class="col-md-12 col-xs-12 login-register">
+						<a href="/blog/login">Login</a> | <a href="/blog/registration">Register</a>
+					</section>
+				</section>
+				<br>
+				<section class="row">
+					<span class="error-header">{{error_header}}</span>
+				</section>
+			</section>
+			<hr>
+		</header>
+
+    <!-- Section for body of page -->
+		<section class="main">
+			{% block content %}
+      {% endblock %}
+		</section>
+		<br>
+		<br>
+
+    <!-- Footer at bottom of page -->
+		<footer>
+			<hr>
+
+			<section class="row">
+				<section class="col-md-6 col-xs-6">
+					<img alt="Blog icon" class="footer-icon" height="60px" src="/images/blogicon.jpg" width="60px">
+				</section>
+
+				<section class="col-md-6 col-xs-6 footer-text">
+					Created by Darryl Ma
+				</section>
+			</section>
+		</footer>
+	</section>
+</body>
+
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+</html>

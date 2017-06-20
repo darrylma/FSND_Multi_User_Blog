@@ -1,0 +1,17 @@
+{% extends "base-form.html" %}
+{% block content %}
+
+<section class="row">
+  <section class="col-md-6 col-md-offset-3">
+    <br>
+    <br>
+    <!-- Displays welcome message after user logs in -->
+    <h3>Welcome {{user.name}}!</h3>
+
+    <section class="welcome-instructions">
+      Please click "Create Blog" to create a new blog entry or "View Blogs" to view all existing blogs
+    </section>
+  </section>
+</section>
+
+{% endblock %}

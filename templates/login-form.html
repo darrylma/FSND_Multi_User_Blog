@@ -1,0 +1,27 @@
+{% extends "pre-login-base-form.html" %}
+{% block content %}
+
+<section class="row">
+<section class="col-md-6 col-md-offset-3">
+  <form method="post">
+    <h3>Login</h3>
+
+    <!-- Displays form for user to provide log in information -->
+    <section class="form-group">
+      <label class="labels login-label">Username</label> <input class="form-control" name="username" placeholder="Username" type="text" value="{{username}}">
+    </section>
+
+    <section class="form-group">
+      <label class="labels login-label">Password</label> <input class="form-control" name="password" placeholder="Password" type="password" value="">
+      <span class="error">{{error}}</span>
+    </section>
+    <br>
+
+    <!-- Buttons to login or proceed registration page -->
+    <button class="btn btn-primary btn-block" type="submit">Log In</button>
+    <a class="btn btn-default btn-block" href="/blog/registration" role="button">Register</a>
+  </form>
+</section>
+</section>
+
+{% endblock %}
